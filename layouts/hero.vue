@@ -1,22 +1,14 @@
-<script lang="ts">
-export default defineComponent({
-  setup() {
-    const route = useRoute();
-    const stylevars = reactive({
-      "--position": "right",
-    });
+<script lang="ts" setup>
+const route = useRoute();
+const stylevars = reactive({
+  "--position": "right",
+});
 
-    watch(route, () => {
-      stylevars["--position"] = "left";
-      setTimeout(() => {
-        stylevars["--position"] = "right";
-      }, 300);
-    });
-
-    return {
-      stylevars,
-    };
-  },
+watch(route, () => {
+  stylevars["--position"] = "left";
+  setTimeout(() => {
+    stylevars["--position"] = "right";
+  }, 300);
 });
 </script>
 
