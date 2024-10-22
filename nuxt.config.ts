@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     sassVariables: true,
     config: {
       brand: {
-        primary: "#57A3C2",
+        primary: "#00529e",
       },
     },
     extras: {

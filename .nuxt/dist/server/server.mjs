@@ -1,0 +1,1 @@
+export { default } from "file:///Users/satalesmana/Project/personal-app/scraper-app/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"

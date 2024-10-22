@@ -4,11 +4,13 @@
 
   .q-table__top,
   thead tr:first-child th /* bg color is important for th; just specify one */
-    background-color: #57A3C2
+    background-color: #00529e
+    color: white
 
   thead tr th
     position: sticky
     z-index: 1
+    text-align: start
   /* this will be the loading indicator */
   thead tr:last-child th
     /* height of all previous header rows */
@@ -20,6 +22,8 @@
   tbody
     /* height of all previous header rows */
     scroll-margin-top: 48px
+    tr td
+       text-align: start
 
 @media (max-width: 600px) 
   .text-right
