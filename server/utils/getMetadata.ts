@@ -1,9 +1,9 @@
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 export const getMetadata = (event: any) => {
   const { authorization } = getHeaders(event);
   if (authorization) {
-    const cleanToken = authorization.split(' ');
+    const cleanToken = authorization.split(" ");
 
     const { payload } =
       cleanToken[1] != null

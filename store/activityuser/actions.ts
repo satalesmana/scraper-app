@@ -1,13 +1,13 @@
 import { Loading, Dialog } from "quasar";
-import { idText } from "typescript";
 
 export async function submitData({ getters }: any, { router }: any) {
   try {
+    const { $useApiFetch } = useNuxtApp();
     Loading.show();
 
     const body = getters.getFormData;
 
-    const { data, error } = await useFetch("/api/activity-user", {
+    const { data, error } = await $useApiFetch("/api/activity-user", {
       method: "POST",
       body,
     });
@@ -30,12 +30,13 @@ export async function submitData({ getters }: any, { router }: any) {
   }
 }
 
-export async function fetchActivityUser({}, id: string) {
+export async function fetchActivityUser({ getters }: any, id: string) {
   try {
-    const { data, error } = await useFetch(`/api/activity-user/${id}`, {
+    const { $useApiFetch } = useNuxtApp();
+    const { data, error } = await $useApiFetch(`/api/activity-user/${id}`, {
       method: "GET",
     });
-
+    console.log("tesssss---");
     if (error.value) {
       throw error;
     }

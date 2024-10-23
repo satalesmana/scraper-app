@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   // ssr: false,
   css: ["~/assets/style/style.sass"],
   plugins: [
+    { src: "~/plugins/fetch-api.ts", mode: "client" },
     { src: "~/plugins/vue-awesome-sidebar.ts", mode: "client" },
     { src: "~/plugins/vuex.ts", mode: "client" },
   ],
@@ -15,6 +16,9 @@ export default defineNuxtConfig({
     saltRounds: 10,
     mongodbUri: process.env.MONGODB_URI,
     secretKey: process.env.SECRET_KEY,
+    public: {
+      appId: process.env.NUXT_APP_ID,
+    },
   },
   quasar: {
     plugins: [
@@ -46,6 +50,9 @@ export default defineNuxtConfig({
     globalAppMiddleware: true,
     provider: {
       type: "local",
+      token: {
+        cookieName: process.env.NUXT_APP_ID || "auth-app-id",
+      },
     },
     endpoints: {
       getSession: { path: "/api/auth/user" },

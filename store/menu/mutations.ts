@@ -5,6 +5,27 @@ const INITIAL_MENU = [
     href: "/",
   },
   {
+    name: "Scraper",
+    icon: {
+      class: "material-symbols-outlined",
+      text: "admin_panel_settings",
+    },
+    children: [
+      {
+        href: "/admin/scraper/account",
+        name: "Account",
+      },
+      {
+        href: "/admin/scraper/task",
+        name: "Task",
+      },
+      {
+        href: "/admin/scraper/logs",
+        name: "Logs",
+      },
+    ],
+  },
+  {
     name: "Admin",
     icon: {
       class: "material-symbols-outlined",

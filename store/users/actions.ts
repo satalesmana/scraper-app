@@ -2,8 +2,9 @@ import { Loading, Dialog } from "quasar";
 
 export async function getUserbyId({}, id: string) {
   try {
+    const { $useApiFetch } = useNuxtApp();
     Loading.show();
-    const { data, error } = await useFetch(`/api/user/${id}`);
+    const { data, error } = await $useApiFetch(`/api/user/${id}`);
     if (error.value) {
       throw error;
     }
@@ -17,8 +18,9 @@ export async function getUserbyId({}, id: string) {
 
 export async function getUserList({ commit }: any) {
   try {
+    const { $useApiFetch } = useNuxtApp();
     Loading.show();
-    const { data, error } = await useFetch("/api/user");
+    const { data, error } = await $useApiFetch("/api/user");
     if (error.value) {
       throw error;
     }
@@ -35,8 +37,9 @@ export async function getUserList({ commit }: any) {
 
 export async function getActivityParent({ commit }: any) {
   try {
+    const { $useApiFetch } = useNuxtApp();
     Loading.show();
-    const { data, error } = await useFetch("/api/activity/parent");
+    const { data, error } = await $useApiFetch("/api/activity/parent");
     if (error.value) {
       throw error;
     }
@@ -53,10 +56,10 @@ export async function getActivityParent({ commit }: any) {
 
 export async function submitUser({ commit, getters }: any, { router }: any) {
   try {
+    const { $useApiFetch } = useNuxtApp();
     Loading.show();
-
     const body = getters.getUser;
-    const { data, error } = await useFetch("/api/user", {
+    const { data, error } = await $useApiFetch("/api/user", {
       method: "POST",
       body,
     });
@@ -84,9 +87,10 @@ export async function deleteUsers(
   ids: Array
 ) {
   try {
+    const { $useApiFetch } = useNuxtApp();
     Loading.show();
     const body = { _id: ids };
-    const { data, error } = await useFetch("/api/user", {
+    const { data, error } = await $useApiFetch("/api/user", {
       method: "DELETE",
       body,
     });

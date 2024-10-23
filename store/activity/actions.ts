@@ -2,8 +2,10 @@ import { Loading, Dialog } from "quasar";
 
 export async function getActivityList({ commit }: any) {
   try {
+    const { $useApiFetch } = useNuxtApp();
+
     Loading.show();
-    const { data, error } = await useFetch("/api/activity");
+    const { data, error } = await $useApiFetch("/api/activity");
     if (error.value) {
       throw error;
     }
@@ -20,8 +22,9 @@ export async function getActivityList({ commit }: any) {
 
 export async function getActivityParent({ commit }: any) {
   try {
+    const { $useApiFetch } = useNuxtApp();
     Loading.show();
-    const { data, error } = await useFetch("/api/activity/parent");
+    const { data, error } = await $useApiFetch("/api/activity/parent");
     if (error.value) {
       throw error;
     }
@@ -41,10 +44,11 @@ export async function submitActivity(
   { router }: any
 ) {
   try {
+    const { $useApiFetch } = useNuxtApp();
     Loading.show();
 
     const body = getters.getActivity;
-    const { data, error } = await useFetch("/api/activity", {
+    const { data, error } = await $useApiFetch("/api/activity", {
       method: "POST",
       body,
     });
@@ -72,9 +76,10 @@ export async function deleteActivity(
   ids: Array
 ) {
   try {
+    const { $useApiFetch } = useNuxtApp();
     Loading.show();
     const body = { _id: ids };
-    const { data, error } = await useFetch("/api/activity", {
+    const { data, error } = await $useApiFetch("/api/activity", {
       method: "DELETE",
       body,
     });
