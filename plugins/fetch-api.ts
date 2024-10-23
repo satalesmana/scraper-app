@@ -5,7 +5,8 @@ export default defineNuxtPlugin(() => {
         return await useFetch(url, {
           baseURL: "/",
           async onRequest(ctx) {
-            const accessToken = await useCookie("auth.token", {
+            const config = useRuntimeConfig();
+            const accessToken = await useCookie(config.public.appId, {
               default: undefined,
             });
             if (accessToken.value !== undefined) {
