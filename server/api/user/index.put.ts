@@ -11,11 +11,13 @@ export default defineEventHandler(async (event) => {
     const name = body.name;
     const email = body.email;
     const password = body.password;
+    const dataSource = body.scraperDataSource;
 
-    console.log("password", password);
     let updateData = {
       name,
       email,
+      isActive: body.status,
+      scraperDataSource: dataSource,
       role: body.role,
     };
 

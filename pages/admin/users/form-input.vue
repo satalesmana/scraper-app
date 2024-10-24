@@ -41,11 +41,12 @@
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <span class="custom-input">
                   <q-input
-                    v-model="name"
+                    v-model:model-value="user.name"
                     outlined
                     dense
                     hide-bottom-space
                     requird
+                    @update:model-value="(val) => (user = { name: val })"
                   />
                 </span>
               </div>
@@ -60,11 +61,40 @@
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <span class="custom-input">
                   <q-input
-                    v-model="email"
+                    v-model:model-value="user.email"
                     outlined
                     dense
                     hide-bottom-space
                     requird
+                    @update:model-value="(val) => (user = { email: val })"
+                  />
+                </span>
+              </div>
+            </div>
+
+            <div class="row q-mb-sm items-center">
+              <div
+                class="text-right q-pr-md col-lg-3 col-md-3 col-sm-3 col-xs-12"
+              >
+                <label class="text-bold">Scraper Datasource </label>
+              </div>
+              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <span class="custom-input">
+                  <q-select
+                    v-model:model-value="user.scraperDataSource"
+                    outlined
+                    dense
+                    emit-value
+                    map-options
+                    hide-bottom-space
+                    requird
+                    :options="optDataSource"
+                    :options-dense="false"
+                    multiple
+                    :rules="[]"
+                    @update:model-value="
+                      (val) => (user = { scraperDataSource: val })
+                    "
                   />
                 </span>
               </div>
@@ -79,11 +109,12 @@
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <span class="custom-input">
                   <q-input
-                    v-model="password"
+                    v-model:model-value="user.password"
                     outlined
                     dense
                     hide-bottom-space
                     requird
+                    @update:model-value="(val) => (user = { password: val })"
                   />
                 </span>
               </div>
@@ -98,7 +129,7 @@
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <span class="custom-input">
                   <q-select
-                    v-model="role"
+                    v-model:model-value="user.role"
                     outlined
                     dense
                     emit-value
@@ -108,10 +139,29 @@
                     :options="optRole"
                     :options-dense="false"
                     :rules="[]"
+                    @update:model-value="(val) => (user = { role: val })"
                   />
                 </span>
               </div>
             </div>
+
+            <div class="row q-mb-sm items-center">
+              <div
+                class="text-right q-pr-md col-lg-3 col-md-3 col-sm-3 col-xs-12"
+              >
+                <label class="text-bold">Status </label>
+              </div>
+              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <span class="custom-input">
+                  <q-toggle
+                    v-model:model-value="user.status"
+                    :label="`${user.status ? 'Active' : 'Non Active'}`"
+                    @update:model-value="(val) => (user = { status: val })"
+                  />
+                </span>
+              </div>
+            </div>
+
             <div class="row q-mb-sm items-center">
               <div
                 class="text-right q-pr-md col-lg-3 col-md-3 col-sm-3 col-xs-12"
@@ -149,40 +199,14 @@ const router = useRouter();
 const store = useStore();
 
 const optRole = computed(() => store.getters["users/getOPTRole"]);
+const optDataSource = computed(() => store.getters["users/getOPTDataSource"]);
 
-const name = computed({
+const user = computed({
   get() {
-    return store.getters["users/getUser"].name;
+    return store.getters["users/getUser"];
   },
   set(value) {
-    store.commit("users/setUser", { name: value });
-  },
-});
-
-const email = computed({
-  get() {
-    return store.getters["users/getUser"].email;
-  },
-  set(value) {
-    store.commit("users/setUser", { email: value });
-  },
-});
-
-const password = computed({
-  get() {
-    return store.getters["users/getUser"].password;
-  },
-  set(value) {
-    store.commit("users/setUser", { password: value });
-  },
-});
-
-const role = computed({
-  get() {
-    return store.getters["users/getUser"].role;
-  },
-  set(value) {
-    store.commit("users/setUser", { role: value });
+    store.commit("users/setUser", value);
   },
 });
 

@@ -1,7 +1,9 @@
 const INITIAL_STATE = {
   name: null,
   email: null,
-  passwrod: null,
+  password: null,
+  status: false,
+  scraperDataSource: [],
   role: null,
 };
 

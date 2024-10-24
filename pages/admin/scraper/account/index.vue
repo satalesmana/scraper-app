@@ -31,7 +31,7 @@
                 color="secondary"
                 size="sm"
                 icon="add"
-                @click="onCreteActivity"
+                @click="onCreate"
               >
                 <q-tooltip> Create New Item </q-tooltip>
               </q-btn>
@@ -115,7 +115,7 @@ const hasDelete = computed(() =>
   hasPermissions({ path: route.fullPath, action: "delete" }),
 );
 
-const onCreteActivity = () => {
+const onCreate = () => {
   router.push("/admin/scraper/account/add");
 };
 

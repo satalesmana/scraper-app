@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
     if (exeption.includes(url.pathname)) {
       return;
     }
-    console.log("url.pathname", url.pathname);
+
     if (url.pathname.includes("/api/")) {
       const config = useRuntimeConfig();
       const { authorization } = getHeaders(event);

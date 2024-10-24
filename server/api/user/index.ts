@@ -8,6 +8,8 @@ export default defineEventHandler(async (event) => {
       name: 1,
       email: 1,
       role: 1,
+      isActive: 1,
+      scraperDataSource: 1,
     });
 
     return { data: res, message: "" } as ApiResponse<[], string>;

@@ -10,6 +10,7 @@ export default defineEventHandler(async (event) => {
     const name = body.name;
     const email = body.email;
     const password = body.password;
+    const dataSource = body.scraperDataSource;
 
     if (name === "") throw new Error("name harus di isi");
     if (password === "") throw new Error("password harus di isi");
@@ -24,6 +25,8 @@ export default defineEventHandler(async (event) => {
       name,
       email,
       password: passwordHas,
+      isActive: body.status,
+      scraperDataSource: dataSource,
       role: body.role,
     });
 

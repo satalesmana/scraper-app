@@ -87,6 +87,19 @@
               </a>
             </q-td>
           </template>
+
+          <template #body-cell-isActive="props">
+            <q-td :props="props">
+              <q-chip v-if="props.value" color="green">Active</q-chip>
+              <q-chip v-if="!props.value" color="red" text-color="white">
+                Non Active
+              </q-chip>
+            </q-td>
+          </template>
+
+          <template #body-cell-scraperDataSource="props">
+            <q-td :props="props">{{ props.value.join(", ") }} </q-td>
+          </template>
         </q-table>
       </q-card-section>
     </q-card>
@@ -97,9 +110,16 @@
 import { useStore } from "vuex";
 
 const columns = ref([
+  { name: "isActive", label: "STATUS", field: "isActive", sortable: true },
   { name: "name", label: "NAME", field: "name", sortable: true },
   { name: "email", label: "EMAIL", field: "email", sortable: true },
   { name: "role", label: "ROLE", field: "role" },
+  {
+    name: "scraperDataSource",
+    label: "SCRAPER DATA SOURCE",
+    field: "scraperDataSource",
+    sortable: true,
+  },
 ]);
 const rows = ref([]);
 const selected = ref([]);
@@ -152,7 +172,12 @@ const onEditItem = () => {
     return;
   }
 
-  store.commit("users/setUser", selected.value[0]);
+  const user = {
+    ...selected.value[0],
+    status: selected.value[0].isActive,
+  };
+
+  store.commit("users/setUser", user);
   router.push("/admin/users/form-input");
 };
 

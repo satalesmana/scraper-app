@@ -9,3 +9,7 @@ export const getOPTRole = (state) => {
 export const getUsersList = (state: any) => {
   return state.data;
 };
+
+export const getOPTDataSource = (state: any) => {
+  return state.opt_data_source;
+};
