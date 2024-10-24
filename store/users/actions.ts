@@ -59,8 +59,9 @@ export async function submitUser({ commit, getters }: any, { router }: any) {
     const { $useApiFetch } = useNuxtApp();
     Loading.show();
     const body = getters.getUser;
+    const method = body._id ? "PUT" : "POST";
     const { data, error } = await $useApiFetch("/api/user", {
-      method: "POST",
+      method: method,
       body,
     });
 

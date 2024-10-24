@@ -1,6 +1,6 @@
-import bcrypt from 'bcryptjs';
-import { User } from '~/server/models/User.model';
-import type { ApiResponse } from '~/server/types/apiresponse.interface';
+import bcrypt from "bcryptjs";
+import { User } from "~/server/models/User.model";
+import type { ApiResponse } from "~/server/types/apiresponse.interface";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
@@ -11,11 +11,11 @@ export default defineEventHandler(async (event) => {
     const email = body.email;
     const password = body.password;
 
-    if (name === '') throw new Error('name harus di isi');
-    if (password === '') throw new Error('password harus di isi');
+    if (name === "") throw new Error("name harus di isi");
+    if (password === "") throw new Error("password harus di isi");
 
     const cekMail = await User.findOne({ email });
-    if (cekMail) throw new Error('email already exist');
+    if (cekMail) throw new Error("email already exist");
 
     const salt = bcrypt.genSaltSync(config.saltRounds);
     const passwordHas = await bcrypt.hashSync(password, salt);
@@ -24,9 +24,10 @@ export default defineEventHandler(async (event) => {
       name,
       email,
       password: passwordHas,
+      role: body.role,
     });
 
-    return { data: res, message: 'user hasbeen saved' } as ApiResponse<
+    return { data: res, message: "user hasbeen saved" } as ApiResponse<
       [],
       string
     >;

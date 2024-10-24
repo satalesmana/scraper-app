@@ -138,15 +138,15 @@ const onDelete = async () => {
 
 const onEditItem = () => {
   store.commit("users/clearUsers");
-  const deleteIds = selected.value.map((item) => item._id);
+  const editId = selected.value.map((item) => item._id);
 
-  if (deleteIds.length <= 0) {
+  if (editId.length <= 0) {
     const error = new Error("No item selected");
     showNotify({ name: "[onEditItem]", type: "Error", error });
     return;
   }
 
-  if (deleteIds.length > 1) {
+  if (editId.length > 1) {
     const error = new Error("Please select one item");
     showNotify({ name: "[onEditItem]", type: "Error", error });
     return;
