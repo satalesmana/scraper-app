@@ -9,7 +9,6 @@ export default defineEventHandler(async (event) => {
     const body = await readBody(event);
     const email = body.username;
     const password = body.password;
-    let token;
 
     if (email === "") throw new Error("username harus di isi");
     if (password === "") throw new Error("password harus di isi");
@@ -20,8 +19,14 @@ export default defineEventHandler(async (event) => {
     const isValid = await bcrypt.compareSync(password, res.password);
     if (!isValid) throw new Error("password invalid");
 
-    token = jwt.sign(
-      { _id: res._id, id: email, name: res.name, role: res.role },
+    const token = jwt.sign(
+      {
+        _id: res._id,
+        id: email,
+        name: res.name,
+        role: res.role,
+        scraperDataSource: res.scraperDataSource,
+      },
       config.secretKey,
       {
         expiresIn: 86400, // expires in 24 hours

@@ -8,6 +8,7 @@ import activity from "~/store/activity";
 import users from "~/store/users";
 import activityuser from "~/store/activityuser";
 import menu from "~/store/menu";
+import scraperAccount from "~/store/scraperAccount";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const vuexCookie = new VuexPersistence<State, Payload>({
@@ -39,6 +40,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       users,
       activityuser,
       menu,
+      scraperAccount,
     },
     mutations: {
       RESTORE_MUTATION: vuexCookie.RESTORE_MUTATION, // this mutation **MUST** be named "RESTORE_MUTATION"

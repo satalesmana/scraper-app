@@ -89,13 +89,14 @@ import { useStore } from "vuex";
 
 const columns = ref([
   {
-    name: "activity_id",
+    name: "email",
     label: "EMAIL",
-    field: "activity_id",
+    field: "email",
     sortable: true,
   },
   { name: "name", label: "NAME", field: "name", sortable: true },
-  { name: "href", label: "ACCOUNT TYPE", field: "href" },
+  { name: "type", label: "ACCOUNT TYPE", field: "type" },
+  { name: "created_by", label: "CREATED BY", field: "created_by" },
 ]);
 const rows = ref([]);
 const selected = ref([]);
@@ -120,8 +121,8 @@ const onCreate = () => {
 };
 
 const onLoadData = async () => {
-  await store.dispatch("activity/getActivityList");
-  rows.value = store.getters["activity/getActivityList"];
+  await store.dispatch("scraperAccount/onFetchList");
+  rows.value = store.getters["scraperAccount/getListData"];
 };
 
 const onDelete = async () => {

@@ -1,10 +1,12 @@
 export default function (): any {
   return {
     form: {
+      type: null,
       name: null,
-      accountType: null,
       email: null,
+      phone: null,
       password: null,
     },
+    data: [],
   };
 }

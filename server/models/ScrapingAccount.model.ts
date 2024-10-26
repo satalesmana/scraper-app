@@ -1,11 +1,11 @@
 import { Schema, model } from "mongoose";
 import { UserSchema } from "./User.model";
 
-export const allowType = ["Jobstreetexpress"];
+export const allowType = ["jobstreet_express", "jobstreet", "kupu"];
 
 export const ScrapingAccountSchema = new Schema({
-  name: { type: String },
   type: { type: String, enum: allowType },
+  name: { type: String },
   email: { type: String },
   phone: { type: String, default: null },
   password: { type: String },

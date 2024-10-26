@@ -17,6 +17,7 @@ const onLogout = () => {
   signOut({ callbackUrl: "/login" });
 };
 </script>
+
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
